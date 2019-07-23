@@ -35,8 +35,8 @@ public class LikedProfileServiceImpl implements LikedProfileService {
 						.findById(likeProfileDto.getLikedProfileId());
 				if (likedUserOptional.isPresent()) {
 					likedProfiles.setLikedProfileId(likedUserOptional.get());
-					if (null != likedProfilesRepository.findByLoginUserIdAndLikedProfileId(likeProfileDto.getUserId(),
-							likeProfileDto.getLikedProfileId())) {
+					if (null == likedProfilesRepository.findByLoginUserIdAndLikedProfileId(
+							userProfileOptional.get(), likedUserOptional.get())) {
 						likedProfilesRepository.save(likedProfiles);
 					}
 					return likedUserOptional.get();

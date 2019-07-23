@@ -13,7 +13,6 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import com.hcl.matrimonial.dto.LikeProfileDto;
-import com.hcl.matrimonial.entity.LikedProfiles;
 import com.hcl.matrimonial.entity.UserProfile;
 import com.hcl.matrimonial.exception.InvalidInputException;
 import com.hcl.matrimonial.exception.ResourceNotFoundException;
@@ -38,8 +37,6 @@ public class LikedProfileServiceImplTest {
 
 	private UserProfile likedUserProfile;
 
-	private LikedProfiles likedProfiles;
-
 	@Before
 	public void setUp() {
 		likeProfileDto = new LikeProfileDto();
@@ -49,7 +46,6 @@ public class LikedProfileServiceImplTest {
 		userProfile = new UserProfile();
 		userProfile.setProfileId(Long.valueOf(1));
 
-		likedProfiles = new LikedProfiles();
 		likedUserProfile = new UserProfile();
 		likedUserProfile.setProfileId(Long.valueOf(2));
 
@@ -72,9 +68,6 @@ public class LikedProfileServiceImplTest {
 	@Test(expected = ResourceNotFoundException.class)
 	public void testLikeProfileWhenUserIdInvalid() throws InvalidInputException {
 		when(userProfileRepository.findById(likeProfileDto.getUserId())).thenReturn(Optional.empty());
-		// when(userProfileRepository.findById(likeProfileDto.getLikedProfileId())).thenReturn(Optional.of(userProfile));
-		// when(likedProfilesRepository.findByLoginUserIdAndLikedProfileId(userProfile,likedUserProfile
-		// )).thenReturn(null);
 		likedProfileServiceImpl.likePrfiles(likeProfileDto);
 	}
 
@@ -82,8 +75,6 @@ public class LikedProfileServiceImplTest {
 	public void testLikeProfileWhenLikedProfileIdInvalid() throws InvalidInputException {
 		when(userProfileRepository.findById(likeProfileDto.getUserId())).thenReturn(Optional.of(userProfile));
 		when(userProfileRepository.findById(likeProfileDto.getLikedProfileId())).thenReturn(Optional.empty());
-		// when(likedProfilesRepository.findByLoginUserIdAndLikedProfileId(userProfile,likedUserProfile
-		// )).thenReturn(null);
 		likedProfileServiceImpl.likePrfiles(likeProfileDto);
 	}
 

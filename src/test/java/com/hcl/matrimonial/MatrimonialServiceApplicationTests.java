@@ -10,7 +10,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class MatrimonialServiceApplicationTests {
 
 	@Test
-	public void contextLoads() {
+	public void main() {
+		MatrimonialServiceApplication.main(new String[] {});
 	}
 
 }

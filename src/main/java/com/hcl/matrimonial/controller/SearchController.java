@@ -25,7 +25,7 @@ public class SearchController {
 	@PostMapping("/profile")
 	public ResponseEntity<List<UserProfile>> getSearchProfile(@RequestBody SearchProfileDto searchProfileDto) {
 
-		return new ResponseEntity<>(searchService.getSearchProfile(searchProfileDto), HttpStatus.OK);
+		return new ResponseEntity<List<UserProfile>>(searchService.getSearchProfile(searchProfileDto), HttpStatus.OK);
 
 	}
 

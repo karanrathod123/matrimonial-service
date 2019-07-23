@@ -1,9 +1,7 @@
 package com.hcl.matrimonial.service;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
@@ -18,7 +16,6 @@ import com.hcl.matrimonial.dto.SearchProfileDto;
 import com.hcl.matrimonial.entity.UserProfile;
 import com.hcl.matrimonial.exception.ResourceNotFoundException;
 import com.hcl.matrimonial.repository.UserProfileRepository;
-import com.hcl.matrimonial.service.SearchServiceImpl;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SearchServiceImplTest {

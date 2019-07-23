@@ -11,4 +11,5 @@ public class LikeController {
 	public ResponseEntity<Object> getMyLikedProfiles(long userId){
 		return null;
 	}
+
 }

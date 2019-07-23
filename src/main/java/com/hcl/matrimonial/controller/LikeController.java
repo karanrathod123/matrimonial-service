@@ -22,14 +22,14 @@ public class LikeController {
 	public ResponseEntity<Object> getMyLikedProfiles(long userId){
 		
 	    ResponseData response =	likeServiceimpl.getMyLikedProfiles(userId);
-		return new ResponseEntity<>(response.getData(),response.getHttpStatus());
+		return new ResponseEntity<>(response,response.getHttpStatus());
 	}
 	
 	@GetMapping("/wholikedme")
 	public ResponseEntity<Object> getWhoLikedMyProfiles(long userId){
 		
-	    ResponseData response =	likeServiceimpl.getMyLikedProfiles(userId);
-		return new ResponseEntity<>(response.getData(),response.getHttpStatus());
+	    ResponseData response =	likeServiceimpl.getWhoLikedMyProfiles(userId);
+		return new ResponseEntity<>(response,response.getHttpStatus());
 	}
 
 }

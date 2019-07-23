@@ -1,3 +1,5 @@
+
+
 package com.hcl.matrimonial.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,13 @@ public class LikeController {
 
 	@GetMapping("/mylikes")
 	public ResponseEntity<Object> getMyLikedProfiles(long userId){
+		
+	    ResponseData response =	likeServiceimpl.getMyLikedProfiles(userId);
+		return new ResponseEntity<Object>(response.getData(),response.getHttpStatus());
+	}
+	
+	@GetMapping("/wholikedme")
+	public ResponseEntity<Object> getWhoLikedMyProfiles(long userId){
 		
 	    ResponseData response =	likeServiceimpl.getMyLikedProfiles(userId);
 		return new ResponseEntity<Object>(response.getData(),response.getHttpStatus());

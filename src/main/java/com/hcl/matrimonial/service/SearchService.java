@@ -7,6 +7,7 @@ import com.hcl.matrimonial.entity.UserProfile;
 
 public interface SearchService {
 
-	List<UserProfile> getSearchProfile(SearchProfileDto searchProfileDto);
-
+	
+	  List<UserProfile> getSearchProfile(SearchProfileDto searchProfileDto);
+	 
 }

@@ -8,5 +8,6 @@ import com.hcl.matrimonial.entity.UserProfile;
 
 @Repository
 public interface UserProfileRepository extends JpaRepository<UserProfile, Long> {
+	public UserProfile findByUserNameAndPassword(String username, String password);
 
 }

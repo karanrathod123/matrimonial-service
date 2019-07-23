@@ -1,7 +1,5 @@
 package com.hcl.matrimonial.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,12 +22,12 @@ public class UserProfileController {
 	UserProfileService userprofileservice;
 
 	@PostMapping("/login")
-	public ResponseEntity<?> loginUser(@RequestBody LoginDto logindto) {
-		return new ResponseEntity<UserProfile>(userprofileservice.loginUser(logindto), HttpStatus.OK);
+	public ResponseEntity<UserProfile> loginUser(@RequestBody LoginDto logindto) {
+		return new ResponseEntity<>(userprofileservice.loginUser(logindto), HttpStatus.OK);
 	}
 
 	@PostMapping("/register")
-	public ResponseEntity<?> addUser(@RequestBody UserProfileDto userprofiledto) {
+	public ResponseEntity<UserProfile> addUser(@RequestBody UserProfileDto userprofiledto) {
 		return new ResponseEntity<>(userprofileservice.registerUser(userprofiledto), HttpStatus.OK);
 	}
 

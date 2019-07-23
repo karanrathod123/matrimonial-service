@@ -3,8 +3,6 @@ package com.hcl.matrimonial.service;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.Period;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,8 +53,6 @@ public class UserProfileService {
 		user.setOccupation(userprofiledto.getOccupation());
 		user.setPassword(userprofiledto.getPassword());
 		user.setWeight(userprofiledto.getWeight());
-
-		List<String> listuser = new ArrayList<String>();
 
 		return userProfileRepository.save(user);
 

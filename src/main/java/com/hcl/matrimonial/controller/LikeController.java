@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class LikeController {
 
-	@GetMapping
+	@GetMapping()
 	public ResponseEntity<Object> getMyLikedProfiles(long userId){
-		
+		return null;
 	}
 }

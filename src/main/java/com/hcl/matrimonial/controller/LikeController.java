@@ -9,6 +9,6 @@ public class LikeController {
 
 	@GetMapping
 	public ResponseEntity<Object> getMyLikedProfiles(long userId){
-		
+		return null;
 	}
 }

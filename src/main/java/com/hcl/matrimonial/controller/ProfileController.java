@@ -39,7 +39,7 @@ public class ProfileController {
 	@PostMapping("/search")
 	public ResponseEntity<List<UserProfile>> getSearchProfile(@RequestBody SearchProfileDto searchProfileDto) {
 		log.info("Searing profile with parameters : "+searchProfileDto.toString());
-		return new ResponseEntity<List<UserProfile>>(searchService.getSearchProfile(searchProfileDto), HttpStatus.OK);
+		return new ResponseEntity<>(searchService.getSearchProfile(searchProfileDto), HttpStatus.OK);
 	}
 
 	@PostMapping("/like")

@@ -1,12 +1,9 @@
-package com.hcl.matrimonial.matrimonial.service;
+package com.hcl.matrimonial.service;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
-import java.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,9 +15,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.hcl.matrimonial.dto.SearchProfileDto;
 import com.hcl.matrimonial.entity.UserProfile;
-import com.hcl.matrimonial.exception.GlobalExceptionHandler;
+import com.hcl.matrimonial.exception.ResourceNotFoundException;
 import com.hcl.matrimonial.repository.UserProfileRepository;
-import com.hcl.matrimonial.service.SearchServiceImpl;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -79,7 +75,7 @@ public class SearchServiceImplTest {
 		searchService.getSearchProfile(searchProfileDto);
 	}
 	
-	@Test(expected=GlobalExceptionHandler.class)
+	@Test(expected=ResourceNotFoundException.class)
 	public void testGetSearchProfileThrowExpectionForNoResults() {
 		Mockito.when(userProfileRepository.findBySearchTerm("Baner", "24", "540000.00", "Pune", "B.Tech", "Harsimar", "Female", "Indian")).thenReturn(list);
 		searchService.getSearchProfile(searchProfileDto);

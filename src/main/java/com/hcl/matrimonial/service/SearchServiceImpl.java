@@ -29,29 +29,18 @@ public class SearchServiceImpl implements SearchService {
 		String fullName = searchProfileDto.getFullName();
 		String gender = searchProfileDto.getGender();
 		String nationality = searchProfileDto.getNationality();
-		System.out.println(address+","+age+","+income+","+city+","+education+","+fullName+","+gender+","+nationality);
-	System.out.println("1");
 
 		log.info("getSearchProfile method in SearchServiceImpl");
 		if (age == 0 && income == 0.0) {
-			System.out.println(2);
 			 return userProfileRepository.findBySearchTerm(address, "", "", city, education, fullName, gender,
 					nationality);
 		} else if (age == 0) {
-			System.out.println(3);
 			return userProfileRepository.findBySearchTerm(address, "", income + "", city, education, fullName, gender,
 					nationality);
 		} else if (income == 0.0) {
-			System.out.println(4);
 			return  userProfileRepository.findBySearchTerm(address, age + "", "", city, education, fullName, gender,
 					nationality);
 		}
-
-		System.out.println(5);
-//		if(list.isEmpty()) {
-//			System.out.println(6);
-//			throw new ResourceNotFoundException("Please add proper filter to find user profile");
-//		}
 
 		return userProfileRepository.findBySearchTerm(address, age + "", income + "", city, education, fullName, gender,
 				nationality);

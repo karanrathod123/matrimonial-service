@@ -22,5 +22,12 @@ public class LikeController {
 	    ResponseData response =	likeServiceimpl.getMyLikedProfiles(userId);
 		return new ResponseEntity<Object>(response.getData(),response.getHttpStatus());
 	}
+	
+	@GetMapping("/wholikedme")
+	public ResponseEntity<Object> getWhoLikedMyProfiles(long userId){
+		
+	    ResponseData response =	likeServiceimpl.getMyLikedProfiles(userId);
+		return new ResponseEntity<Object>(response.getData(),response.getHttpStatus());
+	}
 
 }

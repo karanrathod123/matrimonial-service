@@ -5,4 +5,6 @@ import com.hcl.matrimonial.dto.ResponseData;
 public interface LikeService {
 
 	public ResponseData getMyLikedProfiles(long userId);
+	
+	public ResponseData getWhoLikedMyProfiles(long userId);
 }

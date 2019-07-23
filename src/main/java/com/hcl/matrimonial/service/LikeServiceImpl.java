@@ -47,7 +47,35 @@ public class LikeServiceImpl implements LikeService {
 		}
 
 		responseData.setHttpStatus(HttpStatus.NOT_FOUND);
-		responseData.setMessage("Incorrect Message Id");
+		responseData.setMessage("Incorrect loginId");
+
+		return responseData;
+	}
+
+	@Override
+	public ResponseData getWhoLikedMyProfiles(long userId) {
+		ResponseData responseData = new ResponseData();
+		Optional<UserProfile> userProfileOptional = userProfileRepository.findById(userId);
+		if (userProfileOptional.isPresent()) {
+			UserProfile userProfile = userProfileOptional.get();
+			List<LikedProfiles> likedProfies = likedProfilesRepository.findByLoginUserId(userProfile);
+			if (ObjectUtils.isEmpty(likedProfies)) {
+				responseData.setHttpStatus(HttpStatus.OK);
+				responseData.setMessage("No one liked your profile");
+				return responseData;
+			}
+
+			List<UserProfile> whoLikedMyProfile = new ArrayList<>();
+			likedProfies.stream().forEach(profile -> whoLikedMyProfile.add(profile.getLoginUserId()));
+			responseData.setHttpStatus(HttpStatus.OK);
+			responseData.setMessage("Your profile liked by following people :");
+			responseData.setData(whoLikedMyProfile);
+			return responseData;
+
+		}
+
+		responseData.setHttpStatus(HttpStatus.NOT_FOUND);
+		responseData.setMessage("Incorrect loginId");
 
 		return responseData;
 	}

@@ -2,11 +2,14 @@ package com.hcl.matrimonial.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -46,6 +49,8 @@ public class UserProfile implements Serializable {
 
 	private String education;
 
+	private String occupation;
+
 	private Double annualIncome;
 
 	@JsonIgnore
@@ -53,5 +58,6 @@ public class UserProfile implements Serializable {
 
 	@JsonIgnore
 	private String password;
+	
 
 }

@@ -15,6 +15,9 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import com.hcl.matrimonial.dto.ResponseData;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
@@ -33,6 +36,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	public final ResponseEntity<Object> handleAllExceptions(ResourceNotFoundException ex, WebRequest request) {
 		List<String> details = new ArrayList<>();
 		details.add(ex.getMessage());
+		log.error(ex.getMessage());
 		ResponseData error = new ResponseData(ex.getMessage(), HttpStatus.BAD_REQUEST, null);
 		return new ResponseEntity<>(error, error.getHttpStatus());
 	}
@@ -41,6 +45,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	public final ResponseEntity<Object> handleAllExceptions(InvalidInputException ex, WebRequest request) {
 		List<String> details = new ArrayList<>();
 		details.add(ex.getMessage());
+		log.error(ex.getMessage());
 		ResponseData error = new ResponseData(ex.getMessage(), HttpStatus.BAD_REQUEST, null);
 		return new ResponseEntity<>(error, error.getHttpStatus());
 	}

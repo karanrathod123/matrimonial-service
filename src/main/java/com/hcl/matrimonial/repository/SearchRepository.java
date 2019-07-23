@@ -8,5 +8,6 @@ import com.hcl.matrimonial.entity.UserProfile;
 public interface SearchRepository extends JpaRepository<UserProfile, Long> {
 	
 	//@Query("select * from todo t where LOWER(t.)")
-
+	
+	
 }

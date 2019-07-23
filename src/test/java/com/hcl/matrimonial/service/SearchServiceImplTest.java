@@ -1,29 +1,23 @@
-package com.hcl.matrimonial.matrimonial.service;
+package com.hcl.matrimonial.service;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
-import java.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import com.hcl.matrimonial.dto.SearchProfileDto;
 import com.hcl.matrimonial.entity.UserProfile;
-import com.hcl.matrimonial.exception.GlobalExceptionHandler;
+import com.hcl.matrimonial.exception.ResourceNotFoundException;
 import com.hcl.matrimonial.repository.UserProfileRepository;
-import com.hcl.matrimonial.service.SearchServiceImpl;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
+@RunWith(MockitoJUnitRunner.class)
 public class SearchServiceImplTest {
 
 	private List<UserProfile> list;
@@ -44,11 +38,11 @@ public class SearchServiceImplTest {
 	 searchProfileDto.setAddress("Aundh");
 	 searchProfileDto.setAge(24);
 	 searchProfileDto.setAnnualIncome(540000.00);
-	 searchProfileDto.setCity("Pune");
-	 searchProfileDto.setEducation("B.Tech");
+	 //searchProfileDto.setCity("Pune");
+	 //searchProfileDto.setEducation("B.Tech");
 	 searchProfileDto.setFullName("Harsimar");
-	 searchProfileDto.setGender("Female");
-	 searchProfileDto.setNationality("Indian");
+	 //searchProfileDto.setGender("Female");
+	 //searchProfileDto.setNationality("Indian");
 	 
 	 user = new UserProfile();
 	 user.setAddress("Aundh");
@@ -75,11 +69,13 @@ public class SearchServiceImplTest {
 
 	@Test
 	public void testGetSearchProfile() {
-		Mockito.when(userProfileRepository.findBySearchTerm("Aundh", "24", "540000.00", "Pune", "B.Tech", "Harsimar", "Female", "Indian")).thenReturn(list);
-		searchService.getSearchProfile(searchProfileDto);
+		Mockito.when(userProfileRepository.findBySearchTerm("Aundh", "24", "0.00", "", "", "Harsimar", "", "")).thenReturn(list);
+		List<UserProfile> actual = searchService.getSearchProfile(searchProfileDto);
+		System.out.println(actual);
+		assertNotNull(list);
 	}
 	
-	@Test(expected=GlobalExceptionHandler.class)
+	@Test(expected=ResourceNotFoundException.class)
 	public void testGetSearchProfileThrowExpectionForNoResults() {
 		Mockito.when(userProfileRepository.findBySearchTerm("Baner", "24", "540000.00", "Pune", "B.Tech", "Harsimar", "Female", "Indian")).thenReturn(list);
 		searchService.getSearchProfile(searchProfileDto);

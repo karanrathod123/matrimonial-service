@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hcl.matrimonial.dto.LoginDto;
@@ -16,19 +17,21 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
+@RequestMapping("/user")
 public class UserProfileController {
 
 	@Autowired
-	UserProfileService userprofileservice;
+	UserProfileService userProfileService;
 
 	@PostMapping("/login")
 	public ResponseEntity<UserProfile> loginUser(@RequestBody LoginDto logindto) {
-		return new ResponseEntity<>(userprofileservice.loginUser(logindto), HttpStatus.OK);
+		return new ResponseEntity<>(userProfileService.loginUser(logindto), HttpStatus.OK);
 	}
 
 	@PostMapping("/register")
 	public ResponseEntity<UserProfile> addUser(@RequestBody UserProfileDto userprofiledto) {
-		return new ResponseEntity<>(userprofileservice.registerUser(userprofiledto), HttpStatus.OK);
+		return new ResponseEntity<>(userProfileService.registerUser(userprofiledto), HttpStatus.OK);
+
 	}
 
 }

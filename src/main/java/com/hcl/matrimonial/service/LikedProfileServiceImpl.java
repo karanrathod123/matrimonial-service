@@ -24,7 +24,7 @@ public class LikedProfileServiceImpl implements LikedProfileService {
 
 	@Override
 	public UserProfile likePrfiles(LikeProfileDto likeProfileDto) throws InvalidInputException {
-		if (likeProfileDto.getUserId().equals(likeProfileDto.getLikedProfileId())) {
+		if (!likeProfileDto.getUserId().equals(likeProfileDto.getLikedProfileId())) {
 
 			Optional<UserProfile> userProfileOptional = userProfileRepository.findById(likeProfileDto.getUserId());
 			if (userProfileOptional.isPresent()) {

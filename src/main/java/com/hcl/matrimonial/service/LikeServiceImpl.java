@@ -58,7 +58,7 @@ public class LikeServiceImpl implements LikeService {
 		Optional<UserProfile> userProfileOptional = userProfileRepository.findById(userId);
 		if (userProfileOptional.isPresent()) {
 			UserProfile userProfile = userProfileOptional.get();
-			List<LikedProfiles> likedProfies = likedProfilesRepository.findByLoginUserId(userProfile);
+			List<LikedProfiles> likedProfies = likedProfilesRepository.findByLikedProfileId(userProfile);
 			if (ObjectUtils.isEmpty(likedProfies)) {
 				responseData.setHttpStatus(HttpStatus.OK);
 				responseData.setMessage("No one liked your profile");
@@ -68,7 +68,7 @@ public class LikeServiceImpl implements LikeService {
 			List<UserProfile> whoLikedMyProfile = new ArrayList<>();
 			likedProfies.stream().forEach(profile -> whoLikedMyProfile.add(profile.getLoginUserId()));
 			responseData.setHttpStatus(HttpStatus.OK);
-			responseData.setMessage("Your profile liked by following people :");
+			responseData.setMessage("Your profile is liked by following people :");
 			responseData.setData(whoLikedMyProfile);
 			return responseData;
 

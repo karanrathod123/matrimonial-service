@@ -26,8 +26,6 @@ public class SearchServiceImpl implements SearchService {
 		String fullName = searchProfileDto.getFullName();
 		String gender = searchProfileDto.getGender();
 		String nationality = searchProfileDto.getNationality();
-		
-		System.out.println(age);
 		if(age==0&&income==0.0) {
 			return userProfileRepository.findBySearchTerm(address, "", "", city, education, fullName, gender, nationality);
 		}else
@@ -37,6 +35,7 @@ public class SearchServiceImpl implements SearchService {
 				if(income==0.0) {
 					return userProfileRepository.findBySearchTerm(address, age+"", "", city, education, fullName, gender, nationality);
 				}
+
 		
 		return userProfileRepository.findBySearchTerm(address, age+"", income+"", city, education, fullName, gender, nationality);
 

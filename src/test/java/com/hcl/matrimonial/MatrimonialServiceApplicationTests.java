@@ -1,4 +1,4 @@
-package com.hcl.matrimonial.matrimonial.service;
+package com.hcl.matrimonial;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

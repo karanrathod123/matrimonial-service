@@ -1,5 +1,7 @@
 package com.hcl.matrimonial.service;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;

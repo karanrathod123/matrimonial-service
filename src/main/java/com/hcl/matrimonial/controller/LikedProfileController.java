@@ -18,7 +18,7 @@ public class LikedProfileController {
 	private LikedProfileService likedProfileService;
 
 	@PostMapping("/profile/like")
-	public ResponseEntity<?> likeProfile(@RequestBody LikeProfileDto profileDto) {
-		return new ResponseEntity<UserProfile>(likedProfileService.likePrfiles(profileDto), HttpStatus.CREATED);
+	public ResponseEntity<UserProfile> likeProfile(@RequestBody LikeProfileDto profileDto) {
+		return new ResponseEntity<>(likedProfileService.likePrfiles(profileDto), HttpStatus.CREATED);
 	}
 }

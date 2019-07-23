@@ -20,6 +20,9 @@ import com.hcl.matrimonial.service.LikeService;
 import com.hcl.matrimonial.service.LikedProfileService;
 import com.hcl.matrimonial.service.SearchService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RestController
 @RequestMapping("/profile")
 public class ProfileController {
@@ -35,6 +38,7 @@ public class ProfileController {
 
 	@PostMapping("/search")
 	public ResponseEntity<List<UserProfile>> getSearchProfile(@RequestBody SearchProfileDto searchProfileDto) {
+		log.info("Searing profile with parameters : "+searchProfileDto.toString());
 		return new ResponseEntity<List<UserProfile>>(searchService.getSearchProfile(searchProfileDto), HttpStatus.OK);
 	}
 

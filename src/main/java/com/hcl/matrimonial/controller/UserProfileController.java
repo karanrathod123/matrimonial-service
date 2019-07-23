@@ -25,11 +25,13 @@ public class UserProfileController {
 
 	@PostMapping("/login")
 	public ResponseEntity<UserProfile> loginUser(@RequestBody LoginDto logindto) {
+		log.info("Login User : "+ logindto.getUserName());
 		return new ResponseEntity<>(userProfileService.loginUser(logindto), HttpStatus.OK);
 	}
 
 	@PostMapping("/register")
 	public ResponseEntity<UserProfile> addUser(@RequestBody UserProfileDto userprofiledto) {
+		log.info("Creating new user profile " + userprofiledto.getFullName());
 		return new ResponseEntity<>(userProfileService.registerUser(userprofiledto), HttpStatus.OK);
 
 	}

@@ -7,8 +7,13 @@ import org.springframework.stereotype.Service;
 
 import com.hcl.matrimonial.dto.SearchProfileDto;
 import com.hcl.matrimonial.entity.UserProfile;
+import com.hcl.matrimonial.exception.GlobalExceptionHandler;
+import com.hcl.matrimonial.exception.ResourceNotFoundException;
 import com.hcl.matrimonial.repository.UserProfileRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class SearchServiceImpl implements SearchService {
 
@@ -18,26 +23,33 @@ public class SearchServiceImpl implements SearchService {
 	@Override
 	public List<UserProfile> getSearchProfile(SearchProfileDto searchProfileDto) {
 		String address = searchProfileDto.getAddress();
-		Integer age=searchProfileDto.getAge();
-		Double income=searchProfileDto.getAnnualIncome();
-		String city =searchProfileDto.getCity();
-		
+		Integer age = searchProfileDto.getAge();
+		Double income = searchProfileDto.getAnnualIncome();
+		String city = searchProfileDto.getCity();
+
 		String education = searchProfileDto.getEducation();
 		String fullName = searchProfileDto.getFullName();
 		String gender = searchProfileDto.getGender();
 		String nationality = searchProfileDto.getNationality();
-		if(age==0&&income==0.0) {
-			return userProfileRepository.findBySearchTerm(address, "", "", city, education, fullName, gender, nationality);
-		}else
-			if(age==0) {
-				return userProfileRepository.findBySearchTerm(address, "", income+"", city, education, fullName, gender, nationality);
-			}else 
-				if(income==0.0) {
-					return userProfileRepository.findBySearchTerm(address, age+"", "", city, education, fullName, gender, nationality);
-				}
+	
+		List<UserProfile> list;
+		log.info("getSearchProfile method in SearchServiceImpl");
+		if (age == 0 && income == 0.0) {
+			 list = userProfileRepository.findBySearchTerm(address, "", "", city, education, fullName, gender,
+					nationality);
+		} else if (age == 0) {
+			list =  userProfileRepository.findBySearchTerm(address, "", income + "", city, education, fullName, gender,
+					nationality);
+		} else if (income == 0.0) {
+			list =  userProfileRepository.findBySearchTerm(address, age + "", "", city, education, fullName, gender,
+					nationality);
+		}
 
-		
-		return userProfileRepository.findBySearchTerm(address, age+"", income+"", city, education, fullName, gender, nationality);
-
+		list =  userProfileRepository.findBySearchTerm(address, age + "", income + "", city, education, fullName, gender,
+				nationality);
+		if(list.isEmpty()) {
+			throw new ResourceNotFoundException("Please add proper filter to find user profile");
+		}
+			return list;
 	}
 }

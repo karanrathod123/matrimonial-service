@@ -80,6 +80,30 @@ public class SearchServiceImplTest {
 		assertNotNull(actual);
 	}
 	
+	@Test
+	public void testGetSearchProfileAgeAndIncomeAsZero() {
+		searchProfileDto.setAge(0);
+		searchProfileDto.setAnnualIncome(0.0);
+		Mockito.when(userProfileRepository.findBySearchTerm("Aundh", "0", "0.00", "", "", "Harsimar", "", "")).thenReturn(list);
+		List<UserProfile> actual = searchService.getSearchProfile(searchProfileDto);
+		assertNotNull(actual);
+	}
+	
+	@Test
+	public void testGetSearchProfileAgeAsZero() {
+		searchProfileDto.setAge(0);
+		Mockito.when(userProfileRepository.findBySearchTerm("Aundh", "0", "54000000", "", "", "Harsimar", "", "")).thenReturn(list);
+		List<UserProfile> actual = searchService.getSearchProfile(searchProfileDto);
+		assertNotNull(actual);
+	}
+	
+	@Test
+	public void testGetSearchProfileIncomeAsZero() {
+		searchProfileDto.setAnnualIncome(0.00);
+		Mockito.when(userProfileRepository.findBySearchTerm("Aundh", "24", "0.00", "", "", "Harsimar", "", "")).thenReturn(list);
+		List<UserProfile> actual = searchService.getSearchProfile(searchProfileDto);
+		assertNotNull(actual);
+	}
 	
 
 }

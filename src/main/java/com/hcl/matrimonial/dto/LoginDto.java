@@ -3,7 +3,7 @@ package com.hcl.matrimonial.dto;
 import lombok.Data;
 
 @Data
-public abstract class LoginDto {
+public class LoginDto {
 	
 	
 	private String userName;

@@ -1,7 +1,6 @@
 package com.hcl.matrimonial.service;
 
 import java.time.LocalDate;
-import java.time.Month;
 import java.time.Period;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +31,12 @@ public class UserProfileService {
 	public UserProfile registerUser(UserProfileDto userprofiledto) {
 		UserProfile user = new UserProfile();
 
-		LocalDate today = LocalDate.now(); // Today's date
-		LocalDate birthday = LocalDate.of(1960, Month.JANUARY, 1); // Birth date
+		
 
-		Period p = Period.between(birthday, today);
+		
+		
 
-		user.setAge(p.getYears());
+		
 		user.setAnnualIncome(userprofiledto.getAnnualIncome());
 		user.setAddress(userprofiledto.getAddress());
 		user.setUserName(userprofiledto.getUserName());
@@ -53,6 +52,8 @@ public class UserProfileService {
 		user.setOccupation(userprofiledto.getOccupation());
 		user.setPassword(userprofiledto.getPassword());
 		user.setWeight(userprofiledto.getWeight());
+		Period p = Period.between(user.getDob(), LocalDate.now());
+		user.setAge(p.getYears());
 
 		return userProfileRepository.save(user);
 

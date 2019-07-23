@@ -4,14 +4,6 @@ public class SearchProfileDto {
 
 	private Long searchId;
 
-	public Long getSearchId() {
-		return searchId;
-	}
-
-	public void setSearchId(Long searchId) {
-		this.searchId = searchId;
-	}
-
 	private String fullName;
 
 	private Integer age;
@@ -90,6 +82,14 @@ public class SearchProfileDto {
 
 	public void setAnnualIncome(Double annualIncome) {
 		this.annualIncome = annualIncome;
+	}
+	
+	public Long getSearchId() {
+		return searchId;
+	}
+
+	public void setSearchId(Long searchId) {
+		this.searchId = searchId;
 	}
 
 }

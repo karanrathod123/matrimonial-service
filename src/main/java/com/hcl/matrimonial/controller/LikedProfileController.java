@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hcl.matrimonial.dto.LikeProfileDto;
 import com.hcl.matrimonial.entity.UserProfile;
+import com.hcl.matrimonial.exception.InvalidInputException;
 import com.hcl.matrimonial.service.LikedProfileService;
 
 @RestController
@@ -18,7 +19,7 @@ public class LikedProfileController {
 	private LikedProfileService likedProfileService;
 
 	@PostMapping("/profile/like")
-	public ResponseEntity<?> likeProfile(@RequestBody LikeProfileDto profileDto) {
-		return new ResponseEntity<UserProfile>(likedProfileService.likePrfiles(profileDto), HttpStatus.CREATED);
+	public ResponseEntity<UserProfile> likeProfile(@RequestBody LikeProfileDto profileDto) throws InvalidInputException {
+		return new ResponseEntity<>(likedProfileService.likePrfiles(profileDto), HttpStatus.CREATED);
 	}
 }

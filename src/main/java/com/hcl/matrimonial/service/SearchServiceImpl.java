@@ -14,10 +14,11 @@ public class SearchServiceImpl implements SearchService {
 
 	@Autowired
 	UserProfileRepository userProfileRepository;
-	
-	  @Override public List<UserProfile> getSearchProfile(SearchProfileDto
-	  searchProfileDto) { return null; }
-	 
-	
 
+	@Override
+	public List<UserProfile> getSearchProfile(SearchProfileDto searchProfileDto) {
+		System.out.println(searchProfileDto.getFullName());
+		return null;
+
+	}
 }

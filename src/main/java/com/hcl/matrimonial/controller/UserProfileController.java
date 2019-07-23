@@ -24,8 +24,8 @@ public class UserProfileController {
 	UserProfileService userprofileservice;
 	
 	@PostMapping("/login")
-	public ResponseEntity<?> LoginUser(@RequestBody LoginDto logindto) {
-		return new ResponseEntity<List<String>>(userprofileservice.loginUser(logindto), HttpStatus.OK);
+	public ResponseEntity<List<String>> loginUser(@RequestBody LoginDto logindto) {
+		return new ResponseEntity<>(userprofileservice.loginUser(logindto), HttpStatus.OK);
 	}
 	
 	@PostMapping("/register")

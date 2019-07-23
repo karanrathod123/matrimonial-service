@@ -30,9 +30,14 @@ public class UserProfileService {
 		return list;
 	}
 
-	public List<String> registerUser(UserProfileDto userprofiledto)
+	public UserProfile registerUser(UserProfileDto userprofiledto)
 	 { 
 		UserProfile user = new UserProfile();
+		
+		if(user==null)
+		{
+			return n
+		}
 		
 		LocalDate today = LocalDate.now();                          //Today's date
 		LocalDate birthday = LocalDate.of(1960, Month.JANUARY, 1);  //Birth date
@@ -62,7 +67,7 @@ public class UserProfileService {
 		
 		List<String> listuser=new ArrayList<String>();
 		
-		userProfileRepository.save(user);
-		return listuser;
+		return userProfileRepository.save(user);
+		
 	}
 }

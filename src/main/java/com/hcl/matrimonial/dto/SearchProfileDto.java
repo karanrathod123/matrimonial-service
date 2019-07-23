@@ -1,7 +1,6 @@
 package com.hcl.matrimonial.dto;
 
 public class SearchProfileDto {
-
 	private String fullName;
 
 	private Integer age;
@@ -81,5 +80,6 @@ public class SearchProfileDto {
 	public void setAnnualIncome(Double annualIncome) {
 		this.annualIncome = annualIncome;
 	}
+	
 
 }

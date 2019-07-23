@@ -34,5 +34,4 @@ public class SearchServiceImpl implements SearchService {
 		return userProfileRepository.findBySearchTerm(address, age+"", income+"", city, education, fullName, gender, nationality);
 
 	}
-
 }

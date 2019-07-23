@@ -10,6 +10,7 @@ import com.hcl.matrimonial.entity.UserProfile;
 
 @Repository
 public interface UserProfileRepository extends JpaRepository<UserProfile, Long> {
+	public UserProfile findByUserNameAndPassword(String username, String password);
 
 	@Query(value = "Select * from user_profile u WHERE " + "LOWER(u.address) LIKE LOWER(CONCAT('%', :address, '%')) AND"
 			+ " LOWER(u.age) LIKE LOWER(CONCAT('%',:age, '%')) AND"

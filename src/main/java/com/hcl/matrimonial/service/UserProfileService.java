@@ -20,7 +20,7 @@ public class UserProfileService {
 	
 	public List<String> loginUser(LoginDto logindto)
 	{
-		List<String> list=new ArrayList<String>();
+		List<String> list=new ArrayList<>();
 		userProfileRepository.findByUserNameAndPassword(logindto.getUserName(), logindto.getPassword());
 		return list;
 	}

@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.hcl.matrimonial.dto.SearchProfileDto;
 import com.hcl.matrimonial.entity.UserProfile;
-import com.hcl.matrimonial.exception.GlobalExceptionHandler;
-import com.hcl.matrimonial.exception.ResourceNotFoundException;
 import com.hcl.matrimonial.repository.UserProfileRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -31,25 +29,31 @@ public class SearchServiceImpl implements SearchService {
 		String fullName = searchProfileDto.getFullName();
 		String gender = searchProfileDto.getGender();
 		String nationality = searchProfileDto.getNationality();
-	
-		List<UserProfile> list;
+		System.out.println(address+","+age+","+income+","+city+","+education+","+fullName+","+gender+","+nationality);
+	System.out.println("1");
+
 		log.info("getSearchProfile method in SearchServiceImpl");
 		if (age == 0 && income == 0.0) {
-			 list = userProfileRepository.findBySearchTerm(address, "", "", city, education, fullName, gender,
+			System.out.println(2);
+			 return userProfileRepository.findBySearchTerm(address, "", "", city, education, fullName, gender,
 					nationality);
 		} else if (age == 0) {
-			list =  userProfileRepository.findBySearchTerm(address, "", income + "", city, education, fullName, gender,
+			System.out.println(3);
+			return userProfileRepository.findBySearchTerm(address, "", income + "", city, education, fullName, gender,
 					nationality);
 		} else if (income == 0.0) {
-			list =  userProfileRepository.findBySearchTerm(address, age + "", "", city, education, fullName, gender,
+			System.out.println(4);
+			return  userProfileRepository.findBySearchTerm(address, age + "", "", city, education, fullName, gender,
 					nationality);
 		}
 
-		list =  userProfileRepository.findBySearchTerm(address, age + "", income + "", city, education, fullName, gender,
+		System.out.println(5);
+//		if(list.isEmpty()) {
+//			System.out.println(6);
+//			throw new ResourceNotFoundException("Please add proper filter to find user profile");
+//		}
+
+		return userProfileRepository.findBySearchTerm(address, age + "", income + "", city, education, fullName, gender,
 				nationality);
-		if(list.isEmpty()) {
-			throw new ResourceNotFoundException("Please add proper filter to find user profile");
-		}
-			return list;
 	}
 }

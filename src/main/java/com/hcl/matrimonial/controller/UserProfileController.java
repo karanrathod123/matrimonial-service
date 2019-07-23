@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 public class UserProfileController {
 
 	@Autowired
-	UserProfileService userProfileService;
+	private UserProfileService userProfileService;
 
 	@PostMapping("/login")
 	public ResponseEntity<UserProfile> loginUser(@RequestBody LoginDto logindto) {

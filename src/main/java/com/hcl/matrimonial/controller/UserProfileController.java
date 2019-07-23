@@ -24,13 +24,14 @@ public class UserProfileController {
 	private UserProfileService userProfileService;
 
 	@PostMapping("/login")
-	public ResponseEntity<?> loginUser(@RequestBody LoginDto logindto) {
-		return new ResponseEntity<UserProfile>(userProfileService.loginUser(logindto), HttpStatus.OK);
+	public ResponseEntity<UserProfile> loginUser(@RequestBody LoginDto logindto) {
+		return new ResponseEntity<>(userProfileService.loginUser(logindto), HttpStatus.OK);
 	}
 
 	@PostMapping("/register")
-	public ResponseEntity<?> addUser(@RequestBody UserProfileDto userprofiledto) {
+	public ResponseEntity<UserProfile> addUser(@RequestBody UserProfileDto userprofiledto) {
 		return new ResponseEntity<>(userProfileService.registerUser(userprofiledto), HttpStatus.OK);
+
 	}
 
 }

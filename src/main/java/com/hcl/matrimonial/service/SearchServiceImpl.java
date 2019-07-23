@@ -31,7 +31,7 @@ public class SearchServiceImpl implements SearchService {
 		String fullName = searchProfileDto.getFullName();
 		String gender = searchProfileDto.getGender();
 		String nationality = searchProfileDto.getNationality();
-		
+	
 		List<UserProfile> list;
 		log.info("getSearchProfile method in SearchServiceImpl");
 		if (age == 0 && income == 0.0) {

@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hcl.matrimonial.dto.LoginDto;
+import com.hcl.matrimonial.dto.UserProfileDto;
+import com.hcl.matrimonial.entity.UserProfile;
 import com.hcl.matrimonial.service.UserProfileService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -26,5 +28,10 @@ public class UserProfileController {
 		return new ResponseEntity<List<String>>(userprofileservice.loginUser(logindto), HttpStatus.OK);
 	}
 	
+	@PostMapping("/register")
+	public ResponseEntity<?> addUser(@RequestBody UserProfileDto userprofiledto)
+	{
+		return new ResponseEntity<List<String>>(userprofileservice.registerUser(userprofiledto),HttpStatus.OK);
+	}
 
 }

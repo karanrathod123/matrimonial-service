@@ -17,6 +17,7 @@ public class SearchServiceImpl implements SearchService {
 
 	@Override
 	public List<UserProfile> getSearchProfile(SearchProfileDto searchProfileDto) {
+		System.out.println(searchProfileDto.getFullName());
 		return null;
 
 	}

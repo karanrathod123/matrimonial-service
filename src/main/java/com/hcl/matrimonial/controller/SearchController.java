@@ -19,15 +19,13 @@ import com.hcl.matrimonial.service.SearchService;
 public class SearchController {
 
 	@Autowired
-	SearchService searchService;
+	private SearchService searchService;
 	
 	
 	@PostMapping("/profile")
-	public ResponseEntity<String> getSearchProfile(@RequestBody SearchProfileDto searchProfileDto) {
+	public ResponseEntity<List<UserProfile>> getSearchProfile(@RequestBody SearchProfileDto searchProfileDto) {
 
-		List <UserProfile> userProfileList=searchService.getSearchProfile(searchProfileDto);
-		
-		return new ResponseEntity<String>("", HttpStatus.OK);
+		return new ResponseEntity<List<UserProfile>>(searchService.getSearchProfile(searchProfileDto), HttpStatus.OK);
 
 	}
 

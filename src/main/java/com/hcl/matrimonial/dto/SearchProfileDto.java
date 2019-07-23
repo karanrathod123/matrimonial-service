@@ -2,16 +2,6 @@ package com.hcl.matrimonial.dto;
 
 public class SearchProfileDto {
 
-	private Long searchId;
-
-	public Long getSearchId() {
-		return searchId;
-	}
-
-	public void setSearchId(Long searchId) {
-		this.searchId = searchId;
-	}
-
 	private String fullName;
 
 	private Integer age;

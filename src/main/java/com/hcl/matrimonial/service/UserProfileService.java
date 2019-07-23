@@ -1,7 +1,5 @@
 package com.hcl.matrimonial.service;
 
-
-
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.Period;
@@ -14,37 +12,33 @@ import org.springframework.stereotype.Service;
 import com.hcl.matrimonial.dto.LoginDto;
 import com.hcl.matrimonial.dto.UserProfileDto;
 import com.hcl.matrimonial.entity.UserProfile;
+import com.hcl.matrimonial.exception.ResourceNotFoundException;
 import com.hcl.matrimonial.repository.UserProfileRepository;
-
 
 @Service
 public class UserProfileService {
-	
+
 	@Autowired
 	UserProfileRepository userProfileRepository;
-	
-	public List<String> loginUser(LoginDto logindto)
-	{
-		List<String> list=new ArrayList<String>();
-		userProfileRepository.findByUserNameAndPassword(logindto.getUserName(), logindto.getPassword());
-		return list;
+
+	public UserProfile loginUser(LoginDto logindto) {
+		UserProfile userProfile = userProfileRepository.findByUserNameAndPassword(logindto.getUserName(),
+				logindto.getPassword());
+		if (null != userProfile) {
+			return userProfile;
+		}
+		throw new ResourceNotFoundException("Invalid User");
+
 	}
 
-	public UserProfile registerUser(UserProfileDto userprofiledto)
-	 { 
+	public UserProfile registerUser(UserProfileDto userprofiledto) {
 		UserProfile user = new UserProfile();
-		
-		if(user==null)
-		{
-			return n
-		}
-		
-		LocalDate today = LocalDate.now();                          //Today's date
-		LocalDate birthday = LocalDate.of(1960, Month.JANUARY, 1);  //Birth date
-		 
-		
-		 Period p = Period.between(birthday, today);
-		
+
+		LocalDate today = LocalDate.now(); // Today's date
+		LocalDate birthday = LocalDate.of(1960, Month.JANUARY, 1); // Birth date
+
+		Period p = Period.between(birthday, today);
+
 		user.setAge(p.getYears());
 		user.setAnnualIncome(userprofiledto.getAnnualIncome());
 		user.setAddress(userprofiledto.getAddress());
@@ -61,13 +55,10 @@ public class UserProfileService {
 		user.setOccupation(userprofiledto.getOccupation());
 		user.setPassword(userprofiledto.getPassword());
 		user.setWeight(userprofiledto.getWeight());
-		
-		
-		
-		
-		List<String> listuser=new ArrayList<String>();
-		
+
+		List<String> listuser = new ArrayList<String>();
+
 		return userProfileRepository.save(user);
-		
+
 	}
 }

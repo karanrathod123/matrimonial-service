@@ -19,19 +19,18 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
 public class UserProfileController {
-	
+
 	@Autowired
 	UserProfileService userprofileservice;
-	
+
 	@PostMapping("/login")
-	public ResponseEntity<List<String>> loginUser(@RequestBody LoginDto logindto) {
-		return new ResponseEntity<>(userprofileservice.loginUser(logindto), HttpStatus.OK);
+	public ResponseEntity<?> loginUser(@RequestBody LoginDto logindto) {
+		return new ResponseEntity<UserProfile>(userprofileservice.loginUser(logindto), HttpStatus.OK);
 	}
-	
+
 	@PostMapping("/register")
-	public ResponseEntity<?> addUser(@RequestBody UserProfileDto userprofiledto)
-	{
-		return new ResponseEntity<List<String>>(userprofileservice.registerUser(userprofiledto),HttpStatus.OK);
+	public ResponseEntity<?> addUser(@RequestBody UserProfileDto userprofiledto) {
+		return new ResponseEntity<>(userprofileservice.registerUser(userprofiledto), HttpStatus.OK);
 	}
 
 }

@@ -19,7 +19,7 @@ import com.hcl.matrimonial.service.SearchService;
 public class SearchController {
 
 	@Autowired
-	SearchService searchService;
+	private SearchService searchService;
 	
 	
 	@PostMapping("/profile")

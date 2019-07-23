@@ -13,12 +13,25 @@ import com.hcl.matrimonial.repository.UserProfileRepository;
 public class SearchServiceImpl implements SearchService {
 
 	@Autowired
-	UserProfileRepository userProfileRepository;
+	private UserProfileRepository userProfileRepository;
 
 	@Override
 	public List<UserProfile> getSearchProfile(SearchProfileDto searchProfileDto) {
-		System.out.println(searchProfileDto.getFullName());
-		return null;
+		String address = searchProfileDto.getAddress();
+		Integer age=searchProfileDto.getAge();
+		Double income=searchProfileDto.getAnnualIncome();
+		String city =searchProfileDto.getCity();
+		
+		String education = searchProfileDto.getEducation();
+		String fullName = searchProfileDto.getFullName();
+		String gender = searchProfileDto.getGender();
+		String nationality = searchProfileDto.getNationality();
+		
+		if(income==0||age==0) {
+			userProfileRepository.findBySearchTerm(address, "", "", city, education, fullName, gender, nationality);
+		}
+		
+		return userProfileRepository.findBySearchTerm(address, age+"", income+"", city, education, fullName, gender, nationality);
 
 	}
 }

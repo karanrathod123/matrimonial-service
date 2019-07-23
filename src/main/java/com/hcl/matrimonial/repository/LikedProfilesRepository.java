@@ -1,5 +1,7 @@
 package com.hcl.matrimonial.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.hcl.matrimonial.entity.LikedProfiles;
@@ -9,4 +11,8 @@ public interface LikedProfilesRepository extends JpaRepository<LikedProfiles, Lo
 	
 	
 	public LikedProfiles findByLoginUserIdAndLikedProfileId(UserProfile loginUserId, UserProfile likedProfileId);
+
+	public List<LikedProfiles> findByLoginUserId(UserProfile loginId);
+
+	public List<LikedProfiles> findByLikedProfileId(UserProfile loginId);
 }

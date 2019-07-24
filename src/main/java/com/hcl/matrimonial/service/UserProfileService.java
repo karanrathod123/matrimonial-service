@@ -12,6 +12,8 @@ import com.hcl.matrimonial.entity.UserProfile;
 import com.hcl.matrimonial.exception.ResourceNotFoundException;
 import com.hcl.matrimonial.repository.UserProfileRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
 public class UserProfileService {
 
@@ -24,6 +26,7 @@ public class UserProfileService {
 		if (null != userProfile) {
 			return userProfile;
 		}
+		
 		throw new ResourceNotFoundException("Invalid User");
 
 	}

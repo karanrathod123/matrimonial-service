@@ -1,12 +1,9 @@
 package com.hcl.matrimonial.service;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 import java.sql.Date;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,10 +12,10 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import com.hcl.matrimonial.repository.UserProfileRepository;
 import com.hcl.matrimonial.dto.LoginDto;
 import com.hcl.matrimonial.dto.UserProfileDto;
 import com.hcl.matrimonial.entity.UserProfile;
+import com.hcl.matrimonial.repository.UserProfileRepository;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserProfileServiceTest {
@@ -68,12 +65,4 @@ public class UserProfileServiceTest {
 		Mockito.when(userprofilerepository.findByUserNameAndPassword("username", "password")).thenReturn(userprofile);
 		assertNotNull(userprofileservice.loginUser(logindto));
 	}
-
-	/*
-	 * public void testRegistration() {
-	 * Mockito.when(userprofilerepository.save(userprofile)).thenReturn(userprofile)
-	 * ; assertNotNull(userprofileservice.registerUser(userProfileDto));
-	 * 
-	 * }
-	 */
 }

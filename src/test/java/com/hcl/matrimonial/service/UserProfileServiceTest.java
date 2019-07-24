@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.sql.Date;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,14 +20,11 @@ import com.hcl.matrimonial.dto.LoginDto;
 import com.hcl.matrimonial.dto.UserProfileDto;
 import com.hcl.matrimonial.entity.UserProfile;
 
-
 @RunWith(MockitoJUnitRunner.class)
 public class UserProfileServiceTest {
 
-
 	LoginDto logindto;
 	UserProfile userprofile;
-	
 
 	@Mock
 	UserProfileRepository userprofilerepository;
@@ -34,25 +32,23 @@ public class UserProfileServiceTest {
 	UserProfileDto userProfileDto;
 
 	@InjectMocks
-	UserProfileService userprofileservice;	
-	
-	
+	UserProfileService userprofileservice;
+
 	@Before
 	public void setUp() {
 		userprofile = new UserProfile();
-		logindto=new LoginDto();
-		
+		logindto = new LoginDto();
+
 		logindto.setUserName("username");
 		logindto.setPassword("password");
-		
-		
-		userProfileDto=new UserProfileDto();
-		
+
+		userProfileDto = new UserProfileDto();
+
 		userProfileDto.setAddress("Pune");
-		//userprofile.setAge("34");
+		// userprofile.setAge("34");
 		userProfileDto.setAnnualIncome(6700.0);
 		userProfileDto.setCity("Pune");
-		userProfileDto.setDob(new Date(1993-04-01).toLocalDate());
+		userProfileDto.setDob(new Date(1993 - 04 - 01).toLocalDate());
 		userProfileDto.setEducation("Msc");
 		userProfileDto.setEmailId("p@gmail.com");
 		userProfileDto.setFullName("Prajakta");
@@ -64,23 +60,20 @@ public class UserProfileServiceTest {
 		userProfileDto.setPassword("Praju");
 		userProfileDto.setUserName("Praju");
 		userProfileDto.setWeight(50.5);
-		
+
 	}
-	
 
 	@Test
 	public void testLoginUserFaildSenario() {
 		Mockito.when(userprofilerepository.findByUserNameAndPassword("username", "password")).thenReturn(userprofile);
 		assertNotNull(userprofileservice.loginUser(logindto));
 	}
-	
+
 	/*
-	 * @Test public void testRegistration() {
+	 * public void testRegistration() {
 	 * Mockito.when(userprofilerepository.save(userprofile)).thenReturn(userprofile)
-	 * ; assert(userprofileservice.registerUser(userProfileDto));
+	 * ; assertNotNull(userprofileservice.registerUser(userProfileDto));
 	 * 
 	 * }
 	 */
-	
-	
 }
